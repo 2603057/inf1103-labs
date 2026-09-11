@@ -1,0 +1,35 @@
+commit 81ad2783542026eb510bdc79afa7d233bc62e427 (HEAD -> master)
+Author: MORDY35 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:13:05 2026 +0800
+
+    Something fun to think about. More on next week
+
+commit 1ed848f3171aeecdaf2229133fa6171affeb3943
+Author: MORDY35 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:09:42 2026 +0800
+
+    Interactive profile creator
+
+commit 2d89b183fc01901f51b9b0b4fd9fe39d83c11c69
+Author: MORDY35 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:05:43 2026 +0800
+
+    follower count
+
+commit e135986aba1d2749bf3d145370e76e272fec4875
+Author: MORDY35 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 14:56:47 2026 +0800
+
+    First Post
+
+commit 82ac8749124a7d669f39f6121f0f1456f3b25acf
+Author: MORDY35 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 14:35:47 2026 +0800
+
+    First Post
+~
+~
+~
+~
+~
+(END)
