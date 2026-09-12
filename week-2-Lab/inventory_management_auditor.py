@@ -23,7 +23,8 @@ while quit == False:
       print("Inventory limit exceeded. Must be less than 500 items total")
       quit = True
     else:
-        wantquit = input("Do you want to quit? (quit): ").lower()
+        print("Current Inventory Number is:", inventorynumber)
+        wantquit = input("Do you want to quit? (quit, any key to continue): ").lower()
         if wantquit == "quit":
             quit = True
             print("Inventory List:", inventory)

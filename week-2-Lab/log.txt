@@ -1,0 +1,34 @@
+PS C:\Users\P53\Documents\SIT School Materials\INF1103 - Programming Fundamentals with DevOps\INF1103-Labs\week-2-Lab> git log
+commit fdf252f0570a991ac8bcc42ce231da5eefe640fd (HEAD -> master, origin/master)
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 12 11:34:13 2026 +0800
+
+    Updated inventory management
+
+commit 85c06e57040a9187e94505be22c185ef47983339
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 17:58:37 2026 +0800
+
+    week 2 Labs/
+
+commit 8d905e54bc56879c36bbeb23461e732f11824b50
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 17:39:27 2026 +0800
+
+    week 1 Lab/
+
+commit f8d577460b9822a56b9a2319c02b9c1d76ca7fc7
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 17:30:17 2026 +0800
+
+     week 1 Lab
+
+commit 81ad2783542026eb510bdc79afa7d233bc62e427
+Author: MORDY35 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:13:05 2026 +0800
+
+    Something fun to think about. More on next week
+
+commit 1ed848f3171aeecdaf2229133fa6171affeb3943
+Author: MORDY35 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:09:42 2026 +0800
