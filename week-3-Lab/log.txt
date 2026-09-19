@@ -1,34 +1,41 @@
-PS C:\Users\P53\Documents\SIT School Materials\INF1103 - Programming Fundamentals with DevOps\INF1103-Labs\week-2-Lab> git log
-commit fdf252f0570a991ac8bcc42ce231da5eefe640fd (HEAD -> master, origin/master)
+PS C:\Users\P53\Documents\SIT School Materials\INF1103 - Programming Fundamentals with DevOps\INF1103-Labs\week-3-Lab> git log
+commit 7271d25c5da067f9b1339188152d3c60b3712742 (HEAD -> master, origin/master, origin/HEAD)
 Author: 2603057 <2603057@sit.singaporetech.edu.sg>
-Date:   Sat Sep 12 11:34:13 2026 +0800
+Date:   Sat Sep 19 11:13:01 2026 +0800
 
-    Updated inventory management
+    added the generate report function
 
-commit 85c06e57040a9187e94505be22c185ef47983339
+commit 4988e9773aa9ca8c60ad23181ab3c35e42a97b7b
 Author: 2603057 <2603057@sit.singaporetech.edu.sg>
-Date:   Fri Sep 11 17:58:37 2026 +0800
+Date:   Sat Sep 19 11:04:34 2026 +0800
 
-    week 2 Labs/
+    added the process delivery and tax function
 
-commit 8d905e54bc56879c36bbeb23461e732f11824b50
+commit f97cb6fc4a53f09167b785476a7e87b2cbf665f0
 Author: 2603057 <2603057@sit.singaporetech.edu.sg>
-Date:   Fri Sep 11 17:39:27 2026 +0800
+Date:   Sat Sep 19 09:58:19 2026 +0800
 
-    week 1 Lab/
-
-commit f8d577460b9822a56b9a2319c02b9c1d76ca7fc7
+:
+commit 7271d25c5da067f9b1339188152d3c60b3712742 (HEAD -> master, origin/master, origin/HEAD)
 Author: 2603057 <2603057@sit.singaporetech.edu.sg>
-Date:   Fri Sep 11 17:30:17 2026 +0800
+Date:   Sat Sep 19 11:13:01 2026 +0800
 
-     week 1 Lab
+    added the generate report function
 
-commit 81ad2783542026eb510bdc79afa7d233bc62e427
-Author: MORDY35 <2603057@sit.singaporetech.edu.sg>
-Date:   Fri Sep 4 15:13:05 2026 +0800
+commit 4988e9773aa9ca8c60ad23181ab3c35e42a97b7b
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 19 11:04:34 2026 +0800
 
-    Something fun to think about. More on next week
+    added the process delivery and tax function
 
-commit 1ed848f3171aeecdaf2229133fa6171affeb3943
-Author: MORDY35 <2603057@sit.singaporetech.edu.sg>
-Date:   Fri Sep 4 15:09:42 2026 +0800
+commit f97cb6fc4a53f09167b785476a7e87b2cbf665f0
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 19 09:58:19 2026 +0800
+
+    changed the while loop and added the get_value_input() function
+
+commit 506e1242388db84b6d48ce8b06120ced67246aa6
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 19 09:32:45 2026 +0800
+
+    lab 3
