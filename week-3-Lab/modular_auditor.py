@@ -14,42 +14,19 @@ def get_valid_input():
                
           return amount
 
-
         except ValueError:
                print("Invalid input. Please enter a valid amount in numbers.")
                return None
 
-def process_delvery(current_total, new_value):
-    new_total = current_total + new_value
-    return new_total
-
-def calculate_tax(amount):
-    tax = amount * 0.10
-    return tax
-
-def generate_report(total_units, failed_attempts):
-    print("total deliveres Processed:", total_units)
-    print("Number of failed entries:", failed_attempts)
-
 inventorynumber = 0
 failedentries = 0
-deliveries_processed = 0
 
 while True:
-    
     amount = get_valid_input()
     if amount == "quit":
         break
     if amount is None:
         failedentries += 1
         continue
-    inventorynumber = process_delvery(inventorynumber, amount)
-
-    tax = calculate_tax(amount)
-    deliveries_processed += 1
-
-    print("Delivery amount:", amount)
-    print("Tax for this delivery:", tax)
-    print("Total inventory number:", inventorynumber)
-
-generate_report(deliveries_processed, failedentries)
+    inventorynumber += amount  
+    print("Current inventory number:", inventorynumber) 
