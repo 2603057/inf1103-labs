@@ -30,10 +30,39 @@ def generate_report(total_units, failed_attempts):
     print("total deliveres Processed:", total_units)
     print("Number of failed entries:", failed_attempts)
 
+def load_inventory():
+    try:
+        with open("inventory.txt", "r") as file:
+            lines = file.readlines()
+
+            total = int(lines[0].split("=")[1].strip())
+            history_text = lines[1].split("=")[1].strip()
+            history_text = history_text.strip("[]")
+
+            history = []
+
+            if history_text:
+                values = history_text.split(",")
+                for value in values:
+                    history.append(int(value.strip()))
+
+            return total, history
+        
+    except FileNotFoundError:
+        print("Inventory file not found. Starting with 0 inventory.")
+        return 0
+    except ValueError:
+        print("Invalid data in inventory file. Starting with 0 inventory.")
+        return 0
+
 
 deliveries_processed = 0
-inventorynumber = 0
 failedentries = 0
+
+inventorynumber, transaction_history = load_inventory()
+
+print("loaded inventory:", inventorynumber)
+print("Transaction hisotry:", transaction_history)
 
 while True:
     amount = get_valid_input()
