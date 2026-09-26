@@ -1,0 +1,59 @@
+commit 0581dec86469416058c9e2b569aae0e0085ddd48
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 26 12:07:49 2026 +0800
+
+:
+commit 31b3a44d0fb8180fdc4f8923037c91122b0168f5 (HEAD -> master, origin/master, origin/HEAD)
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 26 15:52:08 2026 +0800
+
+    added the sae function
+
+commit 95f365ec00f30886134cd537b0853cff75dba3e3
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 26 15:33:05 2026 +0800
+
+    list is tracking history and numbers
+
+commit 0581dec86469416058c9e2b569aae0e0085ddd48
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 26 12:07:49 2026 +0800
+
+    load inventory as per lab instuctions image
+
+commit cb544ffd88a323e37846d6104383d9956b2c1c60
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 26 12:02:52 2026 +0800
+
+    load inventory
+
+commit 510b0acce2a78f12f29b6a3c7804f2871fb5f0ed
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 26 11:39:56 2026 +0800
+
+    added load_inventory
+
+:
+commit 31b3a44d0fb8180fdc4f8923037c91122b0168f5 (HEAD -> master, origin/master, origin/HEAD)
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 26 15:52:08 2026 +0800
+
+    added the sae function
+
+commit 95f365ec00f30886134cd537b0853cff75dba3e3
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 26 15:33:05 2026 +0800
+
+    list is tracking history and numbers
+
+commit 0581dec86469416058c9e2b569aae0e0085ddd48
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 26 12:07:49 2026 +0800
+
+    load inventory as per lab instuctions image
+
+commit cb544ffd88a323e37846d6104383d9956b2c1c60
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Sat Sep 26 12:02:52 2026 +0800
+
+    load inventory

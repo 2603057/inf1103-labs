@@ -2,6 +2,7 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY modular_auditor.py . 
+COPY persistent_auditor.py .
+COPY orders.txt .
 
-CMD ["python", "modular_auditor"]
+CMD ["python", "persistent_auditor.py"]
