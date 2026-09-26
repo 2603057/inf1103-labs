@@ -4,7 +4,7 @@ def load_inventory():
     inventory = []
 
     try:
-        file_path = Path(__file__).parent / "inventory.txt"
+        file_path = Path(__file__).parent / "orders.txt"
 
         with open(file_path, "r") as file:
             for line in file:
@@ -13,19 +13,22 @@ def load_inventory():
         return inventory
 
     except FileNotFoundError:
-        print("Inventory file not found. Starting with 0 inventory.")
-        return 0
+        print("\nInventory file not found. Starting with 0 inventory.")
+        return []
 
     except ValueError:
-        print("Invalid data in inventory file. Starting with 0 inventory.")
-        return 0
+        print("\nInvalid data in inventory file. Starting with 0 inventory.")
+        return []
 
 def get_order_input():
     while True:
-        product_name = input("Enter product name: ").strip()
+        product_name = input("\nEnter product name: ").strip()
+
+        if product_name.lower() == "quit":
+            return "quit", 0
 
         if product_name == "":
-            print("Product bane cannot be empty. Please try again.")
+            print("Product name cannot be empty. Please try again.")
         else:
             break 
 
@@ -40,30 +43,39 @@ def get_order_input():
                 break 
 
         except ValueError:
-            print("Invalid quantity. Please enter a whole number.")
+            print("\nInvalid quantity. Please enter a whole number.")
 
     return product_name, quantity
+
+def save_inventory(inventory):
+    file_path = Path(__file__).parent / "orders.txt"
+
+    with open(file_path, "w") as file:
+        for item in inventory:
+            file.write(item + "\n")
 
 inventory = load_inventory()
 
 for item in inventory:
     print(item)
-product_name = input("Enter product name:")
-quantity = input("Enter quantity: ")
 
-product_name, quantity = get_order_input()
+while True:    
+    product_name, quantity = get_order_input()
 
-if inventory:
-    last_item = inventory[-1]
-    last_id = int(last_item.split(",")[0])
-    new_id = last_id + 1
-else:
-    new_id = 1001
+    if product_name.lower() == "quit":
+        save_inventory(inventory)
+        print("\nOrder successfully saved to Orders.txt.")
+        break
 
+    if inventory:
+        last_item = inventory[-1]
+        last_id = int(last_item.split(",")[0])
+        new_id = last_id + 1
+    else:
+        new_id = 1001
 
+    new_order = f"{new_id}, {product_name}, {quantity}"
+    inventory.append(new_order)
 
-new_order = f"{new_id}, {product_name}, {quantity}"
-inventory.append(new_order)
-
-print("New order added!")
-print(new_order)
+    print("\nNew order added!")
+    print(new_order)
