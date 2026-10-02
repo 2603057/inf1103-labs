@@ -1,3 +1,21 @@
+import json
+from pathlib import Path
+
+
+def load_inventory():
+    file_path = Path("inventory.json")
+
+    if file_path.exists():
+        with open(file_path, "r") as f:
+            inventory = json.load(f)
+
+        print("Inventory loaded successfully.")
+        return inventory
+
+    print("inventory.json not found. Starting with an empty inventory.")
+    return []
+
+
 def display_all(inventory):
     if not inventory:
         print("Inventory is empty.")
@@ -18,26 +36,10 @@ def display_all(inventory):
 
 
 def main():
-    inventory = [
-        {
-            "id": "P001",
-            "name": "Laptop",
-            "price": 1200.00,
-            "quantity": 15
-        },
-        {
-            "id": "P002",
-            "name": "Mouse",
-            "price": 25.50,
-            "quantity": 40
-        },
-        {
-            "id": "P003",
-            "name": "Keyboard",
-            "price": 45.00,
-            "quantity": 25
-        }
-    ]
+    inventory = load_inventory()
+
+    if not inventory:
+        print("Inventory is empty.")
 
     display_all(inventory)
 
