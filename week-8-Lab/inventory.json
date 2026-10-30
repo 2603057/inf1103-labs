@@ -10,5 +10,17 @@
         "name": "Mouse",
         "price": 25.5,
         "quantity": 40
+    },
+    {
+        "id": "P003",
+        "name": "purple",
+        "price": 3.0,
+        "quantity": 12
+    },
+    {
+        "id": "P004",
+        "name": "Grapes",
+        "price": 5.0,
+        "quantity": 12
     }
 ]

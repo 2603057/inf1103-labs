@@ -1,0 +1,31 @@
+commit 115959749c85b724446b678a63c210c1ad35d4f6 (HEAD -> master)
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 17:34:21 2026 +0800
+
+    Add Docerfile for Lab 6
+
+commit 4369798fd188274bee04f2df18c5e6b60a25a7fd (origin/master, origin/HEAD)
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 17:33:54 2026 +0800
+
+    Update inventory JSON
+
+commit cb6f6d2f67e7a1639c9afa23b0b252a40cbae85d
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 17:32:57 2026 +0800
+
+    Refactor main progra using OOP
+
+commit 9d683614dbe05ef9d2dba06b86d560aeab741692
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 17:32:14 2026 +0800
+
+    create inventory class
+
+commit 2230734f71359bbb5e9bd128da2917edbda222bf
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 17:31:19 2026 +0800
+
+    Create Product class
+
+:
