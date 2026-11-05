@@ -19,3 +19,6 @@ class PhysicalProduct(Product, CanBeShipped):
 
     def get_shipping_details(self):
         return f"Physical product with weight {self.__weight} kg"
+
+    def get_weight(self):
+        return self.__weight

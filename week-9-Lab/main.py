@@ -4,92 +4,119 @@ from pathlib import Path
 
 from product import Product
 from inventory import Inventory
+from physicalProduct import PhysicalProduct
+from digitalProduct import DigitalProduct
+
 
 
 def load_inventory():
-    file_path = Path("inventory.json")
     inventory = Inventory()
 
-    if file_path.exists():
-        print("inventory.json found.")
+    file_path = Path("inventory.json")
 
-        try:
-            with open(file_path, "r") as f:
-                products = json.load(f)
+    if not file_path.exists() or file_path.stat().st_size == 0:
+        return inventory
 
-            for product_data in products:
-                product = Product(
-                    product_data["id"],
-                    product_data["name"],
-                    product_data["price"],
-                    product_data["quantity"]
-                )
+    with open(file_path, "r") as file:
+        products_data = json.load(file)
 
-                inventory.add_product(product)
+    for data in products_data:
+        product_type = data.get("type", "physical")
 
-            print("Inventory loaded successfully.")
+        if product_type == "physical":
+            product = PhysicalProduct(
+                data["product_id"],
+                data["name"],
+                data["price"],
+                data["quantity"],
+                data.get("weight", 0)
+            )
 
-        except (json.JSONDecodeError, KeyError, TypeError, ValueError):
-            print("Error loading inventory.json.")
+        elif product_type == "digital":
+            product = DigitalProduct(
+                data["product_id"],
+                data["name"],
+                data["price"],
+                data["quantity"],
+                data.get("download_size", 0)
+            )
 
-    else:
-        print("inventory.json not found. Starting with an empty inventory.")
+        else:
+            print(f"Unknown product type: {product_type}")
+            continue
+
+        inventory.add_product(product)
 
     return inventory
 
 
+
 def save_inventory(inventory):
-    products = []
+    products_data = []
 
     for product in inventory.get_products():
-        product_data = {
-            "id": product.get_product_id(),
+
+        data = {
+            "product_id": product.get_product_id(),
             "name": product.get_name(),
             "price": product.get_price(),
             "quantity": product.get_stock()
         }
 
-        products.append(product_data)
+        if isinstance(product, PhysicalProduct):
+            data["type"] = "physical"
+            data["weight"] = product.get_weight()
 
-    with open("inventory.json", "w") as f:
-        json.dump(products, f, indent=4)
+        elif isinstance(product, DigitalProduct):
+            data["type"] = "digital"
+            data["download_size"] = product.get_download_size()
 
-    print("Inventory saved successfully to inventory.json.")
+        products_data.append(data)
+
+    with open("inventory.json", "w") as file:
+        json.dump(products_data, file, indent=4)
+
+    print("Inventory saved successfully!")
+
+
 
 
 def add_product(inventory):
-    print("\nAdd New Product")
+    print("\nChoose Product Type")
+    print("1. Physical Product")
+    print("2. Digital Product")
 
-    product_id = input("Product ID: ").strip()
-    product_name = input("Product Name: ").strip()
+    choice = input("Enter your choice: ")
 
-    if not product_id or not product_name:
-        print("Product ID and name cannot be empty.")
+    if choice not in ["1", "2"]:
+        print("Invalid choice. Please select 1 or 2.")
         return
 
-    if inventory.search_product(product_id):
-        print(f"Product ID '{product_id}' already exists.")
-        return
+    product_id = input("Enter Product ID: ")
+    name = input("Enter Product Name: ")
+    price = float(input("Enter Product Price: "))
+    quantity = int(input("Enter Stock Quantity: "))
 
-    try:
-        product_price = float(input("Price: "))
-        product_quantity = int(input("Stock Quantity: "))
-    except ValueError:
-        print("Price must be a number and stock quantity must be an integer.")
-        return
+    if choice == "1":
+        weight = float(input("Enter Product Weight (kg): "))
 
-    if product_price < 0 or product_quantity < 0:
-        print("Price and quantity must be non-negative.")
-        return
+        product = PhysicalProduct(
+            product_id, name, price, quantity, weight
+        )
 
-    product = Product(
-        product_id,
-        product_name,
-        product_price,
-        product_quantity
-    )
+    elif choice == "2":
+        download_size = float(input("Enter Download Size (MB): "))
+
+        product = DigitalProduct(
+            product_id, name, price, quantity, download_size
+        )
+
+    else:
+        print("Invalid product type.")
+        return
 
     inventory.add_product(product)
+
 
 
 def update_stock(inventory):

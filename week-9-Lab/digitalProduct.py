@@ -11,3 +11,6 @@ class DigitalProduct(Product):
 
     def get_fulfilment_info(self):
         return f"Digital product with download size {self.__download_size} MB"
+
+    def get_download_size(self):
+        return self.__download_size

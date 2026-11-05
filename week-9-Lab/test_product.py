@@ -1,19 +1,17 @@
-
 from physicalProduct import PhysicalProduct
 from digitalProduct import DigitalProduct
 
-
-# Create a physical product
 guitar = PhysicalProduct("P001", "Guitar", 500, 10, 4.5)
-
-# Create a digital product
 windows = DigitalProduct("D001", "Windows OS", 199, 50, 5000)
 
-
-# Display physical product
-print("\nPhysical Product")
+print("\nPhysical Product:")
 guitar.display_information()
 
-# Display digital product
-print("\nDigital Product")
+print("\nShipping Cost:")
+print(guitar.calculate_shipping_cost())
+
+print("\nShipping Details:")
+print(guitar.get_shipping_details())
+
+print("\nDigital Product:")
 windows.display_information()
