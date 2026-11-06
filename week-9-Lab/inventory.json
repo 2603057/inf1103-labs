@@ -1,26 +1,18 @@
 [
     {
         "product_id": "P001",
-        "name": "Laptop",
-        "price": 3000.0,
-        "quantity": 100,
+        "name": "Guitar",
+        "price": 500,
+        "quantity": 20,
         "type": "physical",
-        "weight": 10.0
-    },
-    {
-        "product_id": "P002",
-        "name": "Mouse",
-        "price": 30.0,
-        "quantity": 50,
-        "type": "physical",
-        "weight": 0.3
+        "weight": 4.5
     },
     {
         "product_id": "D001",
-        "name": "Youtube Premium",
-        "price": 15.1,
-        "quantity": 90,
+        "name": "Windows OS",
+        "price": 199,
+        "quantity": 50,
         "type": "digital",
-        "download_size": 15.0
+        "download_size": 5000
     }
 ]
