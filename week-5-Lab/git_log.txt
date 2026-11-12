@@ -1,0 +1,11 @@
+commit 6dd4ddab669f5efc3d0efbac162c3768e8e298a8 (HEAD -> master)
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 18:38:33 2026 +0800
+
+    github stuff for lab 5
+
+commit 8998431e17e6d1bdd614b3992c65434d2413c026
+Author: 2603057 <2603057@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 18:05:47 2026 +0800
+
+    Implement inventory loading
