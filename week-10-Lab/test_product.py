@@ -7,12 +7,34 @@ from inventory import Inventory
 from main import save_inventory, load_inventory
 from supplier import Supplier
 
-supplier = Supplier("S001", "Guitar World", "Test@gmail.com")
-product1 = PhysicalProduct("P001", "Guitar", 499.99, 10, 2.5, supplier)
-product2 = DigitalProduct("P002", "Guitar Lessons", 29.99, 100, "https://example.com/guitar-lessons", supplier)
+# 1. Create a Product BEFORE creating an Inventory
+product1 = PhysicalProduct("P001", "Laptop", 1500 , 10, 2.5, Supplier("S001", "Tech Supplies Inc.", "techsupplies@example.com"))
 
-name = product1.get_supplier()
-name2 =product2.get_supplier()
+# 2. Create Inventory A
+inventoryA = Inventory()
 
-print(name.name)
-print(name2.name)
+# 3. Add Product to Inventory A
+inventoryA.add_product(product1)
+
+# 4. Remove Product from Inventory A
+inventoryA.remove_product("P001")
+
+# 5. Check whether Product still exists
+print("\nChecking Product after removal:")
+product1.display_information()
+
+# 6. Create Inventory B
+inventoryB = Inventory()
+
+# 7. Add the SAME Product object to Inventory B
+inventoryB.add_product(product1)
+
+# 8. Display Inventory B
+inventoryB.display_all()
+
+# 9. Remove Product from Inventory B
+inventoryB.remove_product("P001")
+
+# 10. Check Product still exists
+print("\nChecking Product after removal from Inventory B:")
+product1.display_information()
