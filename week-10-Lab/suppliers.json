@@ -1,0 +1,22 @@
+[
+    {
+        "supplier_id": "S001",
+        "name": "Dell",
+        "contact_email": "dell@email.com"
+    },
+    {
+        "supplier_id": "S002",
+        "name": "HP",
+        "contact_email": "hp@email.com"
+    },
+    {
+        "supplier_id": "S003",
+        "name": "Logitech",
+        "contact_email": "logitech@email.com"
+    },
+    {
+        "supplier_id": "S004",
+        "name": "Apple",
+        "contact_email": "apple@gmail.com"
+    }
+]

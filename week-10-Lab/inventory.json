@@ -4,6 +4,9 @@
         "name": "Guitar",
         "price": 500,
         "quantity": 20,
+        "supplier": {
+            "supplier_id": "S001"
+        },
         "type": "physical",
         "weight": 4.5
     },
@@ -12,7 +15,21 @@
         "name": "Windows OS",
         "price": 199,
         "quantity": 50,
+        "supplier": {
+            "supplier_id": "S001"
+        },
         "type": "digital",
         "download_size": 5000
+    },
+    {
+        "product_id": "P003",
+        "name": "Elmo",
+        "price": 100.0,
+        "quantity": 50,
+        "supplier": {
+            "supplier_id": "S002"
+        },
+        "type": "physical",
+        "weight": 10.0
     }
 ]
