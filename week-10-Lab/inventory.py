@@ -7,7 +7,7 @@ class Inventory:
     def __init__(self):
         self.__products: list[Product] = []
 
-    def add_product(self, product: Product):
+    def add_product(self, product: Product) -> None:
         for existing_product in self.__products:
             if existing_product.get_product_id() == product.get_product_id():
                 print(f"Product ID '{product.get_product_id()}' already exists.")
@@ -42,6 +42,7 @@ class Inventory:
 
         for product in self.__products:
             product.display_information()
+            print(product.get_fulfilment_info())
 
         print("------------------------------------------------")
 

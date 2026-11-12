@@ -6,35 +6,47 @@ from can_be_shipped import CanBeShipped
 from inventory import Inventory
 from main import save_inventory, load_inventory
 from supplier import Supplier
+from order import Order
+from orderline import OrderLine
 
-# 1. Create a Product BEFORE creating an Inventory
-product1 = PhysicalProduct("P001", "Laptop", 1500 , 10, 2.5, Supplier("S001", "Tech Supplies Inc.", "techsupplies@example.com"))
+# Create one Product
+product1 = PhysicalProduct("P001", "Laptop", 1500, 10, 2.5, "Dell")
 
-# 2. Create Inventory A
-inventoryA = Inventory()
+# Create two Orders
+order1 = Order("O001")
+order2 = Order("O002")
 
-# 3. Add Product to Inventory A
-inventoryA.add_product(product1)
+# Add the SAME Product to both Orders
+order1.add_order_line(product1, 2)
+order2.add_order_line(product1, 3)
 
-# 4. Remove Product from Inventory A
-inventoryA.remove_product("P001")
+# Display both Orders
+print("ORDER 1:")
+order1.display_order()
 
-# 5. Check whether Product still exists
-print("\nChecking Product after removal:")
-product1.display_information()
+print("\nORDER 2:")
+order2.display_order()
 
-# 6. Create Inventory B
-inventoryB = Inventory()
+# Compare object identities
+order1_line = order1.get_order_lines()[0]
+order2_line = order2.get_order_lines()[0]
 
-# 7. Add the SAME Product object to Inventory B
-inventoryB.add_product(product1)
+print("\nOBJECT IDENTITY TEST")
 
-# 8. Display Inventory B
-inventoryB.display_all()
+print("Same OrderLine object:",
+      order1_line is order2_line)
 
-# 9. Remove Product from Inventory B
-inventoryB.remove_product("P001")
+print("Same Product object:",
+      order1_line.product is order2_line.product)
 
-# 10. Check Product still exists
-print("\nChecking Product after removal from Inventory B:")
+# Remove OrderLine from Order 1
+print("\nREMOVING ORDER LINE FROM ORDER 1")
+order1.remove_order_line("P001")
+
+# Check Order 2 is unaffected
+print("\nORDER 2 AFTER REMOVAL:")
+order2.display_order()
+
+# Check Product still exists
+print("\nPRODUCT STILL EXISTS:")
 product1.display_information()

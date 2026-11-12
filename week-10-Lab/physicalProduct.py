@@ -14,8 +14,9 @@ class PhysicalProduct(Product, CanBeShipped):
         return f"Physical product weighing {self.__weight} kg"
 
     def calculate_shipping_cost(self):
-        # Placeholder implementation - replace with actual shipping cost calculation
-        return self.__weight * 10
+        base_cost = 5.0  
+        cost_per_kg = 2.0
+        return base_cost + (cost_per_kg * self.__weight)
 
     def get_shipping_details(self):
         return f"Physical product with weight {self.__weight} kg"
