@@ -2,6 +2,8 @@
 import json
 from pathlib import Path
 
+import inventory
+from product_factory import ProductFactory
 from product import Product
 from inventory import Inventory
 from physicalProduct import PhysicalProduct
@@ -152,32 +154,21 @@ def load_inventory(suppliers):
             suppliers.append(supplier)
             suppliers_changed = True
 
-        # Create physical or digital product
-        if product_type == "physical":
-            product = PhysicalProduct(
+        try:
+            product = ProductFactory.create(
+                product_type,
                 data["product_id"],
                 data["name"],
                 data["price"],
                 data["quantity"],
-                data.get("weight", 0),
-                supplier
+                supplier,
+                weight=data.get("weight", 0),
+                download_size=data.get("download_size", 0)
             )
 
-        elif product_type == "digital":
-            product = DigitalProduct(
-                data["product_id"],
-                data["name"],
-                data["price"],
-                data["quantity"],
-                data.get("download_size", 0),
-                supplier
-            )
-
-        else:
-            print(f"Unknown product type: {product_type}")
-            continue
-
-        inventory.add_product(product)
+            inventory.add_product(product)
+        except ValueError as error:
+            print(f"Error loading product {data.get('product_id')}: {error}")
 
     if suppliers_changed:
         save_suppliers(suppliers)
@@ -255,15 +246,15 @@ def add_product(inventory, suppliers):
             print("Invalid weight.")
             return
 
-        product = PhysicalProduct(
+        product = ProductFactory.create(
+            "physical",
             product_id,
             name,
             price,
             quantity,
-            weight,
-            supplier
+            supplier,
+            weight=weight
         )
-
     else:
         try:
             download_size = float(input("Enter Download Size (MB): "))
@@ -271,15 +262,15 @@ def add_product(inventory, suppliers):
             print("Invalid download size.")
             return
 
-        product = DigitalProduct(
+        product = ProductFactory.create(
+            "digital",
             product_id,
             name,
             price,
             quantity,
-            download_size,
-            supplier
+            supplier,
+            download_size=download_size
         )
-
     inventory.add_product(product)
 
 
