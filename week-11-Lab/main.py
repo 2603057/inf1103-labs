@@ -104,74 +104,93 @@ def select_supplier(suppliers):
 
 def load_inventory(suppliers):
     inventory = Inventory()
-
     file_path = Path("inventory.json")
+    loaded_count = 0
 
-    if not file_path.exists() or file_path.stat().st_size == 0:
-        return inventory
-
-    with open(file_path, "r") as file:
-        products_data = json.load(file)
-
-    suppliers_changed = False
-
-    for data in products_data:
-        product_type = data.get("type", "physical")
-        supplier_data = data.get("supplier")
-
-        supplier = None
-        supplier_id = None
-
-        # Get supplier ID from inventory.json
-        if isinstance(supplier_data, dict):
-            supplier_id = supplier_data.get("supplier_id")
-
-        elif isinstance(supplier_data, str):
-            supplier_id = supplier_data
-
-        # Find existing supplier
-        if supplier_id is not None:
-            for existing_supplier in suppliers:
-                if existing_supplier.supplier_id == supplier_id:
-                    supplier = existing_supplier
-                    break
-
-        # Create supplier if it does not exist
-        if supplier is None:
-            if isinstance(supplier_data, dict) and "name" in supplier_data:
-                supplier = Supplier(
-                    supplier_id,
-                    supplier_data["name"],
-                    supplier_data["contact_email"]
-                )
+    try:
+        with open(file_path, "r") as file:
+            if file_path.stat().st_size == 0:
+                products_data = []
             else:
-                supplier = Supplier(
-                    "UNKNOWN",
-                    "Unknown",
-                    "Unknown"
+                products_data = json.load(file)
+
+    except FileNotFoundError:
+        print("Error: inventory.json was not found.")
+
+    except json.JSONDecodeError:
+        print("Error: inventory.json contains invalid JSON.")
+
+    else:
+        suppliers_changed = False
+
+        for data in products_data:
+            product_type = data.get("type", "physical")
+            supplier_data = data.get("supplier")
+
+            supplier = None
+            supplier_id = None
+
+            # Get supplier ID from inventory.json
+            if isinstance(supplier_data, dict):
+                supplier_id = supplier_data.get("supplier_id")
+
+            elif isinstance(supplier_data, str):
+                supplier_id = supplier_data
+
+            # Find existing supplier
+            if supplier_id is not None:
+                for existing_supplier in suppliers:
+                    if existing_supplier.supplier_id == supplier_id:
+                        supplier = existing_supplier
+                        break
+
+            # Create supplier if it does not exist
+            if supplier is None:
+                if isinstance(supplier_data, dict) and "name" in supplier_data:
+                    supplier = Supplier(
+                        supplier_id,
+                        supplier_data["name"],
+                        supplier_data["contact_email"]
+                    )
+                else:
+                    supplier = Supplier(
+                        "UNKNOWN",
+                        "Unknown",
+                        "Unknown"
+                    )
+
+                suppliers.append(supplier)
+                suppliers_changed = True
+
+            # Create product using factory
+            try:
+                product = ProductFactory.create(
+                    product_type,
+                    data["product_id"],
+                    data["name"],
+                    data["price"],
+                    data["quantity"],
+                    supplier,
+                    weight=data.get("weight", 0),
+                    download_size=data.get("download_size", 0)
                 )
 
-            suppliers.append(supplier)
-            suppliers_changed = True
+                inventory.add_product(product)
+                loaded_count += 1
 
-        try:
-            product = ProductFactory.create(
-                product_type,
-                data["product_id"],
-                data["name"],
-                data["price"],
-                data["quantity"],
-                supplier,
-                weight=data.get("weight", 0),
-                download_size=data.get("download_size", 0)
-            )
+            except ValueError as error:
+                print(
+                    f"Error loading product "
+                    f"{data.get('product_id')}: {error}"
+                )
 
-            inventory.add_product(product)
-        except ValueError as error:
-            print(f"Error loading product {data.get('product_id')}: {error}")
+        if suppliers_changed:
+            save_suppliers(suppliers)
 
-    if suppliers_changed:
-        save_suppliers(suppliers)
+        print(f"Successfully loaded {loaded_count} products.")
+
+    finally:
+        print("Load attempt finished.")
 
     return inventory
 
