@@ -1,53 +1,43 @@
+import unittest
 
 from order import Order
 from supplier import Supplier
 from physicalProduct import PhysicalProduct
+
 from no_discount import NoDiscount
 from percentage_discount import PercentageDiscount
 from bulk_discount import BulkDiscount
 from student_discount import StudentDiscount
 
-# Create supplier and product
-supplier = Supplier("S001", "Dell", "dell@email.com")
 
-product = PhysicalProduct(
-    "P001",
-    "Desk Lamp",
-    25.00,
-    10,
-    1.5,
-    supplier
-)
+class TestDiscountStrategy(unittest.TestCase):
 
-# Create order with 10 lamps ($250)
-order = Order("O001")
-order.add_order_line(product, 10)
+    def setUp(self):
+        supplier = Supplier("S001", "Dell", "dell@email.com")
 
-# TEST 1: No discount
-print("TEST 1: No Discount")
-print("Expected: 250.0")
-print("Actual:", order.get_total())
+        product = PhysicalProduct(
+            "P001", "Desk Lamp", 25.00, 10, 1.5, supplier
+        )
 
-assert order.get_total() == 250.0
+        self.order = Order("O001")
+        self.order.add_order_line(product, 10)
 
-# TEST 2: Bulk discount
-print("\nTEST 2: Bulk Discount")
+    def test_no_discount(self):
+        self.order.set_discount(NoDiscount())
+        self.assertEqual(self.order.get_total(), 250.0)
 
-order.set_discount(BulkDiscount(200, 20))
+    def test_bulk_discount(self):
+        self.order.set_discount(BulkDiscount(200, 20))
+        self.assertEqual(self.order.get_total(), 230.0)
 
-print("Expected: 230.0")
-print("Actual:", order.get_total())
+    def test_percentage_discount(self):
+        self.order.set_discount(PercentageDiscount(10))
+        self.assertEqual(self.order.get_total(), 225.0)
 
-assert order.get_total() == 230.0
+    def test_student_discount(self):
+        self.order.set_discount(StudentDiscount())
+        self.assertEqual(self.order.get_total(), 237.5)
 
-# TEST 3: Change to percentage discount
-print("\nTEST 3: Percentage Discount")
 
-order.set_discount(PercentageDiscount(10))
-
-print("Expected: 225.0")
-print("Actual:", order.get_total())
-
-assert order.get_total() == 225.0
-
-print("\nALL TESTS PASSED!")
+if __name__ == "__main__":
+    unittest.main()

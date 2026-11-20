@@ -1,3 +1,4 @@
+import unittest
 
 from product_factory import ProductFactory
 from supplier import Supplier
@@ -5,116 +6,50 @@ from physicalProduct import PhysicalProduct
 from digitalProduct import DigitalProduct
 
 
-supplier = Supplier(
-    "S001",
-    "Dell",
-    "dell@email.com"
-)
+class TestProductFactory(unittest.TestCase):
 
-# TEST 1: Create Physical Product
-physical = ProductFactory.create(
-    "physical",
-    "P001",
-    "Desk Lamp",
-    25.00,
-    10,
-    supplier,
-    weight=1.5
-)
+    def setUp(self):
+        self.supplier = Supplier(
+            "S001", "Dell", "dell@email.com"
+        )
 
-assert isinstance(physical, PhysicalProduct)
-print("Physical product creation: PASSED")
+    def test_create_physical_product(self):
+        product = ProductFactory.create(
+            "physical",
+            "P001",
+            "Desk Lamp",
+            25.00,
+            10,
+            self.supplier,
+            weight=1.5
+        )
 
+        self.assertIsInstance(product, PhysicalProduct)
 
-# TEST 2: Create Digital Product
-digital = ProductFactory.create(
-    "digital",
-    "D001",
-    "Photo Editor",
-    49.90,
-    100,
-    supplier,
-    download_size=500
-)
+    def test_create_digital_product(self):
+        product = ProductFactory.create(
+            "digital",
+            "D001",
+            "Photo Editor",
+            49.90,
+            100,
+            self.supplier,
+            download_size=500
+        )
 
-assert isinstance(digital, DigitalProduct)
-print("Digital product creation: PASSED")
+        self.assertIsInstance(product, DigitalProduct)
 
-
-# TEST 3: Unknown Product Type
-try:
-    ProductFactory.create(
-        "service",
-        "S001",
-        "Installation",
-        30.00,
-        5,
-        supplier
-    )
-
-except ValueError as error:
-    print("Unknown product type: PASSED")
-    print(error)
+    def test_unknown_product_type(self):
+        with self.assertRaises(ValueError):
+            ProductFactory.create(
+                "service",
+                "S001",
+                "Installation",
+                30.00,
+                5,
+                self.supplier
+            )
 
 
-print("\nALL FACTORY TESTS PASSED!")
-
-from product_factory import ProductFactory
-from supplier import Supplier
-from physicalProduct import PhysicalProduct
-from digitalProduct import DigitalProduct
-
-
-supplier = Supplier(
-    "S001",
-    "Dell",
-    "dell@email.com"
-)
-
-# TEST 1: Create Physical Product
-physical = ProductFactory.create(
-    "physical",
-    "P001",
-    "Desk Lamp",
-    25.00,
-    10,
-    supplier,
-    weight=1.5
-)
-
-assert isinstance(physical, PhysicalProduct)
-print("Physical product creation: PASSED")
-
-
-# TEST 2: Create Digital Product
-digital = ProductFactory.create(
-    "digital",
-    "D001",
-    "Photo Editor",
-    49.90,
-    100,
-    supplier,
-    download_size=500
-)
-
-assert isinstance(digital, DigitalProduct)
-print("Digital product creation: PASSED")
-
-
-# TEST 3: Unknown Product Type
-try:
-    ProductFactory.create(
-        "service",
-        "S001",
-        "Installation",
-        30.00,
-        5,
-        supplier
-    )
-
-except ValueError as error:
-    print("Unknown product type: PASSED")
-    print(error)
-
-
-print("\nALL FACTORY TESTS PASSED!")
+if __name__ == "__main__":
+    unittest.main()

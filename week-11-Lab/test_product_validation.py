@@ -1,46 +1,67 @@
+import unittest
+
 from supplier import Supplier
 from physicalProduct import PhysicalProduct
 from orderline import OrderLine
 
-supplier = Supplier("S001", "Dell", "dell@email.com")
 
-# Valid product
-product = PhysicalProduct(
-    "P001", "Desk Lamp", 25.00, 10, 1.5, supplier
-)
-print("Valid product: PASSED")
+class TestProductValidation(unittest.TestCase):
 
-# Invalid price
-try:
-    PhysicalProduct("P002", "Lamp", 0, 10, 1.5, supplier)
-except ValueError:
-    print("Invalid price: PASSED")
+    def setUp(self):
+        self.supplier = Supplier(
+            "S001", "Dell", "dell@email.com"
+        )
 
-# Invalid stock
-try:
-    PhysicalProduct("P003", "Lamp", 25, -5, 1.5, supplier)
-except ValueError:
-    print("Invalid stock: PASSED")
+    def test_valid_product(self):
+        product = PhysicalProduct(
+            "P001", "Desk Lamp", 25.00, 10, 1.5, self.supplier
+        )
+        self.assertEqual(product.get_price(), 25.00)
 
-# Invalid stock update
-try:
-    product.update_stock(-10)
-except ValueError:
-    print("Invalid stock update: PASSED")
-    
+    def test_invalid_price(self):
+        with self.assertRaises(ValueError):
+            PhysicalProduct(
+                "P002", "Lamp", 0, 10, 1.5, self.supplier
+            )
 
-# Valid order quantity
-order_line = OrderLine(product, 2)
-print("Valid order quantity: PASSED")
+    def test_negative_stock(self):
+        with self.assertRaises(ValueError):
+            PhysicalProduct(
+                "P003", "Lamp", 25, -5, 1.5, self.supplier
+            )
 
-# Invalid order quantity: zero
-try:
-    OrderLine(product, 0)
-except ValueError:
-    print("Zero order quantity: PASSED")
+    def test_invalid_stock_update(self):
+        product = PhysicalProduct(
+            "P004", "Lamp", 25, 10, 1.5, self.supplier
+        )
 
-# Invalid order quantity: negative
-try:
-    OrderLine(product, -3)
-except ValueError:
-    print("Negative order quantity: PASSED")
+        with self.assertRaises(ValueError):
+            product.update_stock(-10)
+
+    def test_valid_order_quantity(self):
+        product = PhysicalProduct(
+            "P005", "Lamp", 25, 10, 1.5, self.supplier
+        )
+
+        order_line = OrderLine(product, 2)
+        self.assertEqual(order_line.quantity, 2)
+
+    def test_zero_order_quantity(self):
+        product = PhysicalProduct(
+            "P006", "Lamp", 25, 10, 1.5, self.supplier
+        )
+
+        with self.assertRaises(ValueError):
+            OrderLine(product, 0)
+
+    def test_negative_order_quantity(self):
+        product = PhysicalProduct(
+            "P007", "Lamp", 25, 10, 1.5, self.supplier
+        )
+
+        with self.assertRaises(ValueError):
+            OrderLine(product, -3)
+
+
+if __name__ == "__main__":
+    unittest.main()
