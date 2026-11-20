@@ -2,11 +2,10 @@
 from order import Order
 from supplier import Supplier
 from physicalProduct import PhysicalProduct
-from discount_strategy import (
-    NoDiscount,
-    PercentageDiscount,
-    BulkDiscount
-)
+from no_discount import NoDiscount
+from percentage_discount import PercentageDiscount
+from bulk_discount import BulkDiscount
+from student_discount import StudentDiscount
 
 # Create supplier and product
 supplier = Supplier("S001", "Dell", "dell@email.com")

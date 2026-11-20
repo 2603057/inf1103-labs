@@ -1,7 +1,8 @@
 
 from orderline import OrderLine
 from product import Product
-from discount_strategy import DiscountStrategy, NoDiscount
+from discount_strategy import DiscountStrategy
+from no_discount import NoDiscount
 
 
 class Order:
