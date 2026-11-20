@@ -31,5 +31,16 @@
         },
         "type": "physical",
         "weight": 10.0
+    },
+    {
+        "product_id": "P005",
+        "name": "Cheese Cake",
+        "price": 3.2,
+        "quantity": 100,
+        "supplier": {
+            "supplier_id": "S004"
+        },
+        "type": "physical",
+        "weight": 50.0
     }
 ]
