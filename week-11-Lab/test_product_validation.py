@@ -1,5 +1,6 @@
 from supplier import Supplier
 from physicalProduct import PhysicalProduct
+from orderline import OrderLine
 
 supplier = Supplier("S001", "Dell", "dell@email.com")
 
@@ -26,3 +27,20 @@ try:
     product.update_stock(-10)
 except ValueError:
     print("Invalid stock update: PASSED")
+    
+
+# Valid order quantity
+order_line = OrderLine(product, 2)
+print("Valid order quantity: PASSED")
+
+# Invalid order quantity: zero
+try:
+    OrderLine(product, 0)
+except ValueError:
+    print("Zero order quantity: PASSED")
+
+# Invalid order quantity: negative
+try:
+    OrderLine(product, -3)
+except ValueError:
+    print("Negative order quantity: PASSED")
